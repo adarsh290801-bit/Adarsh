@@ -1,0 +1,111 @@
+<clickhouse>
+
+    <listen_host>0.0.0.0</listen_host>
+
+    <macros>
+        <shard from_env="SHARD"/>
+        <replica from_env="REPLICA"/>
+    </macros>
+
+    <zookeeper>
+
+        <node>
+            <host>keeper1</host>
+            <port>9181</port>
+        </node>
+
+        <node>
+            <host>keeper2</host>
+            <port>9181</port>
+        </node>
+
+        <node>
+            <host>keeper3</host>
+            <port>9181</port>
+        </node>
+
+    </zookeeper>
+
+    <remote_servers>
+
+        <my_cluster>
+
+            <shard>
+                <internal_replication>true</internal_replication>
+
+                <replica>
+                    <host>clickhouse1</host>
+                    <port>9000</port>
+                </replica>
+
+                <replica>
+                    <host>clickhouse2</host>
+                    <port>9000</port>
+                </replica>
+            </shard>
+
+
+            <shard>
+                <internal_replication>true</internal_replication>
+
+                <replica>
+                    <host>clickhouse3</host>
+                    <port>9000</port>
+                </replica>
+
+                <replica>
+                    <host>clickhouse4</host>
+                    <port>9000</port>
+                </replica>
+            </shard>
+
+
+            <shard>
+                <internal_replication>true</internal_replication>
+
+                <replica>
+                    <host>clickhouse5</host>
+                    <port>9000</port>
+                </replica>
+
+                <replica>
+                    <host>clickhouse6</host>
+                    <port>9000</port>
+                </replica>
+            </shard>
+
+
+            <shard>
+                <internal_replication>true</internal_replication>
+
+                <replica>
+                    <host>clickhouse7</host>
+                    <port>9000</port>
+                </replica>
+
+                <replica>
+                    <host>clickhouse8</host>
+                    <port>9000</port>
+                </replica>
+            </shard>
+
+
+            <shard>
+                <internal_replication>true</internal_replication>
+
+                <replica>
+                    <host>clickhouse9</host>
+                    <port>9000</port>
+                </replica>
+
+                <replica>
+                    <host>clickhouse10</host>
+                    <port>9000</port>
+                </replica>
+            </shard>
+
+        </my_cluster>
+
+    </remote_servers>
+
+</clickhouse>

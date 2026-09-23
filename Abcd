@@ -1,0 +1,27 @@
+SELECT
+    metric,
+
+    maxIf(value, cpuid = 0) AS CPU0,
+    maxIf(value, cpuid = 1) AS CPU1,
+    maxIf(value, cpuid = 2) AS CPU2,
+    maxIf(value, cpuid = 3) AS CPU3
+
+FROM
+(
+    SELECT
+        cpuid,
+        argMax(A, time) AS A,
+        argMax(B, time) AS B,
+        argMax(C, time) AS C,
+        argMax(D, time) AS D,
+        argMax(E, time) AS E
+    FROM your_table
+    GROUP BY cpuid
+)
+ARRAY JOIN
+    ['A', 'B', 'C', 'D', 'E'] AS metric,
+    [A, B, C, D, E] AS value
+
+GROUP BY metric
+ORDER BY
+    indexOf(['A', 'B', 'C', 'D', 'E'], metric);
